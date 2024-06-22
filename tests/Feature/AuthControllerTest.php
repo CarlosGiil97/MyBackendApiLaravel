@@ -100,4 +100,23 @@ class AuthControllerTest extends TestCase
             'msg',
         ]);
     }
+
+    public function test_logout(): void
+    {
+        $user = User::factory()->create([
+            'email' => 'test@example.com',
+            'password' => Hash::make('password'),
+        ]);
+
+        $token = $user->createToken('apiToken')->plainTextToken;
+
+        $response = $this->postJson('/api/logout', [], [
+            'Authorization' => 'Bearer ' . $token,
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertJsonStructure([
+            'message',
+        ]);
+    }
 }
