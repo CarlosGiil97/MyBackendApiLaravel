@@ -19,7 +19,6 @@ class AuthController extends Controller
         ]);
 
 
-
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -49,7 +48,7 @@ class AuthController extends Controller
 
         if (!$user || !Hash::check($data['password'], $user->password)) {
             return response([
-                'msg' => 'incorrect username or password'
+                'msg' => 'Contraseña o email incorrecto'
             ], 401);
         }
 
