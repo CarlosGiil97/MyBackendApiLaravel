@@ -23,6 +23,6 @@ class UserProfileTest extends TestCase
         $userProfile = new \App\Models\UserProfile();
         $this->assertInstanceOf(\App\Models\UserProfile::class, $userProfile);
 
-        $this->assertEquals(['first_name', 'last_name', 'phone', 'address', 'city', 'country', 'postcode', 'date_of_birth', 'hobbies', 'skills'], $userProfile->getFillable());
+        $this->assertEquals(['user_id', 'first_name', 'last_name', 'phone', 'address', 'city', 'country', 'postcode', 'date_of_birth', 'hobbies', 'skills'], $userProfile->getFillable());
     }
 }
