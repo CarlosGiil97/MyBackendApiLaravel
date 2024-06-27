@@ -41,7 +41,7 @@ class UserProfileController extends Controller
     public function show($id)
     {
         try {
-            $profile = UserProfile::findOrFail($id)->with('user')->first();
+            $profile = UserProfile::where('user_id', $id)->with('user')->first();
             return response()->json([
                 'msg' => 'Información encontrada',
                 'data' => $profile
@@ -59,17 +59,23 @@ class UserProfileController extends Controller
     {
 
         try {
-            $profile = UserProfile::findOrFail($id);
+            $profile = UserProfile::where('user_id', $id)->with('user')->first();
 
             $data = $request->validate([
                 'first_name' => 'sometimes|required|string|max:255',
                 'last_name' => 'sometimes|required|string|max:255',
                 'phone' => 'sometimes|max:10',
+                'address' => 'sometimes|max:255',
+                'city' => 'sometimes|max:255',
+                'country' => 'sometimes|max:255',
+                'postcode' => 'sometimes|max:255',
+                'date_of_birth' => 'sometimes|max:255',
+                'hobbies' => 'sometimes|max:255',
+                'skills' => 'sometimes|max:255',
             ]);
 
-
-
             $profile->update($data);
+
             return response()->json([
                 'msg' => 'Información actualizada con exito',
                 'data' => $profile
