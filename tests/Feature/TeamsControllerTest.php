@@ -150,4 +150,27 @@ class TeamsControllerTest extends TestCase
 
         $this->assertDatabaseMissing('teams', ['id' => $team->id]);
     }
+
+    public function testDuplicateNameTeam()
+    {
+
+        $team = Teams::factory()->create();
+
+        $data = [
+            'name' => $team->name,
+            'description' => 'Team Description',
+            'founded' => 2023,
+            'logo' => 'http://example.com/logo.png',
+        ];
+
+
+        $response = $this->postJson('/api/teams', $data);
+
+
+        $response->assertStatus(404);
+        $response->assertJson([
+            'msg' => 'El equipo ' . $data['name'] . ' ya existe en nuestro sistema',
+            'data' => null
+        ]);
+    }
 }

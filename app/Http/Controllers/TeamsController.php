@@ -42,12 +42,20 @@ class TeamsController extends Controller
     public function store(Request $request)
     {
 
+        if (Teams::where('name', $request->name)->exists()) {
+            return response()->json([
+                'msg' => 'El equipo ' . $request->name . ' ya existe en nuestro sistema',
+                'data' => null
+            ], 404);
+        }
+
         try {
             $data = $request->validate([
                 'name' => 'required|string',
                 'description' => 'sometimes|string',
                 'founded' => 'sometimes|integer',
                 'logo' => 'sometimes|string',
+                'colors' => 'sometimes|string',
             ]);
 
             $team = Teams::create($data);
