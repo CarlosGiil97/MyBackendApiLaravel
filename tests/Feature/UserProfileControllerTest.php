@@ -77,7 +77,7 @@ class UserProfileControllerTest extends TestCase
             'phone' => '1234567890',
         ];
 
-        $response = $this->patchJson("/api/profile/{$profile->id}", $data);
+        $response = $this->patchJson("/api/profile/{$user->id}", $data);
 
         $response->assertStatus(201)
             ->assertJson([
@@ -109,7 +109,7 @@ class UserProfileControllerTest extends TestCase
 
         $this->actingAs($user);
 
-        $response = $this->getJson("/api/profile/{$profile->id}");
+        $response = $this->getJson("/api/profile/{$user->id}");
 
         $response->assertStatus(200)
             ->assertJson([
