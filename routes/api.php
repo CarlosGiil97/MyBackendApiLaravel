@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TeamsController;
+use App\Http\Controllers\SeasonController;
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
@@ -26,6 +27,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/teams/{id}', [TeamsController::class, 'show']);
     Route::patch('/teams/{id}', [TeamsController::class, 'update']);
     Route::delete('/teams/{id}', [TeamsController::class, 'destroy']);
+
+    //rutas temporadas
+    Route::get('/seasons', [SeasonController::class, 'index']);
+    Route::post('/seasons', [SeasonController::class, 'store']);
+    Route::get('/seasons/{id}', [SeasonController::class, 'show']);
+    Route::patch('/seasons/{id}', [SeasonController::class, 'update']);
+    Route::delete('/seasons/{id}', [SeasonController::class, 'destroy']);
 });
 
 Route::post('/signup', [AuthController::class, 'sign_up']);

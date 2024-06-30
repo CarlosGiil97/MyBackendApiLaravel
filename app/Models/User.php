@@ -15,6 +15,9 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
 
+    public $timestamps = true;
+
+
     /**
      * The attributes that are mass assignable.
      *
