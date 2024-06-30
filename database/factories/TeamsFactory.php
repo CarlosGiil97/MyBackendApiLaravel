@@ -20,7 +20,7 @@ class TeamsFactory extends Factory
             'name' => $this->faker->name,
             'description' => $this->faker->text,
             'founded' => $this->faker->year,
-            'logo' => $this->faker->imageUrl(),
+            'logo' => $this->faker->image(),
             'colors' => $this->faker->hexColor(),
 
         ];

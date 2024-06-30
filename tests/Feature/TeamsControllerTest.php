@@ -76,7 +76,6 @@ class TeamsControllerTest extends TestCase
             'name' => 'Team Name',
             'description' => 'Team Description',
             'founded' => 2023,
-            'logo' => 'http://example.com/logo.png',
         ];
 
         // Act
@@ -90,7 +89,6 @@ class TeamsControllerTest extends TestCase
                 'name' => 'Team Name',
                 'description' => 'Team Description',
                 'founded' => 2023,
-                'logo' => 'http://example.com/logo.png',
             ]
         ]);
 
@@ -106,23 +104,20 @@ class TeamsControllerTest extends TestCase
             'name' => 'Updated Team Name',
             'description' => 'Updated Description',
             'founded' => 2024,
-            'logo' => 'http://example.com/updated_logo.png',
             'colors' => 'Blue and White',
         ];
 
         // Act
         $response = $this->patchJson('/api/teams/' . $team->id, $data);
 
-
         // Assert
         $response->assertStatus(201);
         $response->assertJson([
-            'msg' => 'Información actualizada con exito',
+            'msg' => 'Información actualizada con éxito',
             'data' => [
                 'name' => 'Updated Team Name',
                 'description' => 'Updated Description',
                 'founded' => 2024,
-                'logo' => 'http://example.com/updated_logo.png',
                 'colors' => 'Blue and White',
             ]
         ]);
@@ -160,7 +155,6 @@ class TeamsControllerTest extends TestCase
             'name' => $team->name,
             'description' => 'Team Description',
             'founded' => 2023,
-            'logo' => 'http://example.com/logo.png',
         ];
 
 
