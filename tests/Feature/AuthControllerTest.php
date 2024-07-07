@@ -30,8 +30,11 @@ class AuthControllerTest extends TestCase
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => 'password',
+            'first_name' => 'Test',
+            'last_name' => 'Test',
             'password_confirmation' => 'password',
         ]);
+
 
         $response->assertStatus(201);
         $response->assertJsonStructure([

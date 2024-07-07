@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserProfile;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
@@ -15,7 +16,9 @@ class AuthController extends Controller
         $data = $request->validate([
             'name' => 'required|string',
             'email' => 'required|string|unique:users,email',
-            'password' => 'required|string|confirmed'
+            'password' => 'required|string|confirmed',
+            'first_name' => 'required|string',
+            'last_name' => 'sometimes|string',
         ]);
 
 
@@ -26,6 +29,14 @@ class AuthController extends Controller
         ]);
 
         $token = $user->createToken('apiToken')->plainTextToken;
+
+        //le creo un modelo profile con este usuario
+
+        $userProfile = UserProfile::create([
+            'user_id' => $user->id,
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'] ?? null,
+        ]);
 
 
         $res = [

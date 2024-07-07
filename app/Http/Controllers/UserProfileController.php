@@ -21,7 +21,7 @@ class UserProfileController extends Controller
             $data = $request->validate([
                 'user_id' => 'required|exists:users,id',
                 'first_name' => 'required|string|max:255',
-                'last_name' => 'required|string|max:255',
+                'last_name' => 'sometimes|string|max:255',
                 'phone' => 'sometimes|max:10',
             ]);
 
