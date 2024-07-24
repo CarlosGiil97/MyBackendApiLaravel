@@ -14,7 +14,7 @@ class MatchesController extends Controller
      */
     public function index()
     {
-        $matches = Matches::with('teamHome', 'teamAway', 'season')->get();
+        $matches = Matches::with('teamHome', 'teamAway', 'season', 'tournament')->get();
 
 
         return response()->json($matches);

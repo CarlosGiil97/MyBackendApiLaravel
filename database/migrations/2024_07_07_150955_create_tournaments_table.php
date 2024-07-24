@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('season_id')->nullable()->constrained('seasons');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->date('date_start');
             $table->date('date_end');
             $table->timestamps();

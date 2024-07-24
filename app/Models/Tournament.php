@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Matches;
+
 class Tournament extends Model
 {
     use HasFactory;
@@ -16,4 +18,9 @@ class Tournament extends Model
         'date_start',
         'date_end',
     ];
+
+    public function matches()
+    {
+        return $this->hasMany(Matches::class);
+    }
 }

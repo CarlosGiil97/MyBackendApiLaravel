@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\SeasonController;
 use App\Http\Controllers\MatchesController;
+use App\Http\Controllers\TournamentsController;
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
@@ -42,7 +43,15 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/matches/{id}', [MatchesController::class, 'show']);
     Route::patch('/matches/{id}', [MatchesController::class, 'update']);
     Route::delete('/matches/{id}', [MatchesController::class, 'destroy']);
+
+    //rutas torneo
+    Route::get('/tournaments', [TournamentsController::class, 'index']);
+    Route::get('/tournaments-with-matches', [TournamentsController::class, 'indexWithMatches']);
+    Route::get('/tournaments/{id}', [TournamentsController::class, 'show']);
+    Route::post('/tournaments', [TournamentsController::class, 'store']);
+    Route::patch('/tournaments/{id}', [TournamentsController::class, 'update']);
+    Route::delete('/tournaments/{id}', [TournamentsController::class, 'destroy']);
 });
 
 Route::post('/signup', [AuthController::class, 'sign_up']);
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login'])->name('login');
